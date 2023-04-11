@@ -4,10 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>blikk tools ki</title>
+    <title>Avatareditor :: blikk</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="avatareditor">
+      <!-- token must contein same userid as claim -->
+      <Avatar
+          type="avatar"
+          assets-url="//files.blikk.test/avatar"
+          get-url="//files.blikk.test/api/v1/avatar"
+          creator-url="//files.blikk.test/api/v1/avatar/create"
+          upload-url="//files.blikk.test/api/v1/avatar/upload"
+          scope="avataredit.154.background"
+          :workspace="154"
+          :userid="3"
+          jwt=""
+          @done=""
+          @error="showError"
+          @cancel=""
+          :lang="{
+              titel : 'BEARBEITE DEINEN AVATAR',
+              upload_desc : 'Ziehe ein Bild in diesen Bereich oder wähle eins aus ...',
+              upload : 'DATEI AUSWÄHLEN',
+              picture : 'SELFIE',
+              outfit : 'Wähle dein Outfit und positioniere dein Foto',
+              next : 'Weiter',
+              previous : 'Zurück',
+              save : 'SPEICHERN',
+              cancel : 'Abbrechen'
+          }"
+      />
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

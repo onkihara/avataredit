@@ -18,6 +18,10 @@ export default defineConfig({
     port : 3001
   },
   build: {
-    
+    lib: {
+      entry: path.resolve(__dirname, 'lib/main.js'),
+      name: 'avatareditor',
+      fileName: (format) => `avatareditor.${format}.js`
+    }
   }
 })

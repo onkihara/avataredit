@@ -1,4 +1,11 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import Avatar from './Avatar.vue'
 
-createApp(App).mount('#app')
+
+const app = createApp({})
+app.component('Avatar',Avatar)
+app.mount('#avatareditor')
+
+
+console.log(import.meta.env.VITE_JWT_TOKEN)
+
