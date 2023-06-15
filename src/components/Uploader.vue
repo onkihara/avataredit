@@ -46,20 +46,28 @@
         top : 0,
         left : 0
     })
+    let TheDropzone = null;
 
     let canTakePicture = computed(() => {
         return 'mediaDevices' in navigator
     })
 
     onMounted(() => {
-        const myDropzone = new Dropzone("#ae-media-dropzone", {
+        createDropzone()
+    })
+
+    function createDropzone() {
+        if (TheDropzone) {
+            TheDropzone.destroy()
+        }
+        TheDropzone = new Dropzone("#ae-media-dropzone", {
             createImageThumbnails : false,
             disablePreviews : true,
             clickable : ['#ae-media-btnbrowse'],
             headers : { 'Authorization' : 'Bearer ' + jwt },
             init : function() {
                 this.on('sending',() => {
-                    loading.value=true 
+                    loading.value=true
                     upload.size = 'auto'
                 })
                 this.on('uploadprogress', (file, progress, bytesSent) => {
@@ -80,7 +88,7 @@
                 showImage(JSON.parse(result.xhr.response))
             }
         })
-    })
+    }
 
     function showImage(updata) {
         if (updata.url) {
@@ -134,6 +142,7 @@
         stopVideo()
         captured.value = false
         pictureOn.value = false
+        nextTick(() => createDropzone())
     }
 
     function takePicture() {
