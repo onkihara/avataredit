@@ -54,7 +54,7 @@
         pos.dleft = (dx + parseInt(pos.dleft)) + 'px'
         pos.dtop = (dy + parseInt(pos.dtop)) + 'px'
         // resizing
-        if (e.dataTransfer.getData('type') === 'resize') {
+        if (e.srcElement.id === 'ae-resizer') {
             // resize border and image
             pos.width = (-dx + parseInt(pos.width)) + 'px'
             pos.height = (-dy + parseInt(pos.height)) + 'px'
@@ -62,13 +62,11 @@
     }
 
     function dragStart(e) {
-        e.dataTransfer.setData('type','drag')
         pos.x = e.pageX
         pos.y = e.pageY
     }
 
     function resizeStart(e) {
-        e.dataTransfer.setData('type','resize')
         pos.x = e.pageX
         pos.y = e.pageY
     }
